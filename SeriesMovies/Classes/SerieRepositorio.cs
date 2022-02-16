@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text.Json;
 
 using SeriesMovies.Interface;
@@ -11,11 +12,13 @@ namespace SeriesMovies
 		public void Atualiza(int id, Serie entidade)
 		{
 			lista[id] = entidade;
+			SalvaArquivo();
 		}
 
 		public void Exclui(int id)
 		{
 			lista[id].Excluir();
+			SalvaArquivo();
 		}
 
 		public void Insere(Serie entidade)
@@ -24,18 +27,13 @@ namespace SeriesMovies
 			SalvaArquivo();
 		}
 
-		public void LeArquivo()
+		public void adicionaTemporada(int serieID, int ano, int episodios)
 		{
-			using (StreamReader arquivo = File.OpenText(caminho))
-			{
-				string linha;
-				while ((linha = arquivo.ReadLine()) != null)
-				{
-					Console.WriteLine(linha);
-				}
-			}
+			int id = lista[serieID].Temporadas.Count();
+			Temporada temporada = new Temporada(id, ano, episodios);
+			lista[serieID].Temporadas.Add(temporada);
+			SalvaArquivo();
 		}
-
 		public List<Serie> Lista()
 		{
 			return lista;
@@ -51,6 +49,21 @@ namespace SeriesMovies
 			return lista[id];
 		}
 
+		public void LeArquivo()
+		{
+			if (File.Exists(caminho))
+			{
+				using (StreamReader arquivo = File.OpenText(caminho))
+				{
+					string linha;
+					while ((linha = arquivo.ReadLine()) != null)
+					{
+						lista.Add(Serie.ParseJSON(linha));
+						Console.WriteLine(lista.Last());
+					}
+				}
+			}
+		}
 		public void SalvaArquivo()
 		{
 			string linha = "";
@@ -58,10 +71,7 @@ namespace SeriesMovies
 			{
 				foreach (Serie item in lista)
 				{
-					// linha = JsonSerializer.Serialize(item);
-					// Console.WriteLine(item);
-					Console.WriteLine(item.toJSON());
-					// arquivo.WriteLine(linha);
+					arquivo.WriteLine(item.toJSON());
 				}
 			}
 		}

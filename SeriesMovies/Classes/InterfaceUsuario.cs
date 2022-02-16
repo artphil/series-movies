@@ -43,7 +43,7 @@ namespace SeriesMovies
 			return opcaoUsuario;
 		}
 
-		public static void InserirSerie(SerieRepositorio repositorio)
+		public static Serie InserirSerie(int serieID)
 		{
 			Console.WriteLine("Inserir nova série");
 
@@ -57,31 +57,28 @@ namespace SeriesMovies
 			Console.Write("Digite o Título da Série: ");
 			string entradaTitulo = Console.ReadLine();
 
-
 			Console.Write("Digite a Descrição da Série: ");
 			string entradaDescricao = Console.ReadLine();
 
-			Serie novaSerie = new Serie(id: repositorio.ProximoId(),
-										genero: (Genero)entradaGenero,
-										titulo: entradaTitulo,
-										descricao: entradaDescricao);
+			return new Serie(id: serieID,
+							 genero: (Genero)entradaGenero,
+							 titulo: entradaTitulo,
+							 descricao: entradaDescricao);
+		}
 
-			repositorio.Insere(novaSerie);
-			string continua = "S";
-			int temporadaAno;
-			int temporadaEpisodios;
-			while (continua == "S")
-			{
-			Console.Write($"Informações da {novaSerie.retornaTemporadas()} temporada");
+		private static Temporada InserirTemporada(int temporadaID)
+		{
+			Console.Write($"Informações da {temporadaID} temporada");
+
 			Console.Write("Digite o Ano de Início da Temporada: ");
-			temporadaAno = int.Parse(Console.ReadLine());
-			Console.Write("Digite o número de episódios da Temporada: ");
-			temporadaEpisodios = int.Parse(Console.ReadLine());
-			novaSerie.adicionaTemporada(temporadaAno, temporadaEpisodios);
+			int temporadaAno = int.Parse(Console.ReadLine());
 
-			Console.Write("Deseja adicionar outra temporada? (S/N): ");
-			continua = Console.ReadLine().ToUpper();
-			}
+			Console.Write("Digite o número de episódios da Temporada: ");
+			int temporadaEpisodios = int.Parse(Console.ReadLine());
+
+			return new Temporada(id: temporadaID, 
+								 ano: temporadaAno, 
+								 episodios: temporadaEpisodios);
 		}
 	}
 }
