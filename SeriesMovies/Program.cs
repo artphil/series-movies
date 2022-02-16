@@ -1,149 +1,150 @@
-﻿namespace SeriesMovies
+﻿using System;
+namespace SeriesMovies
 {
 	class Program
 	{
 		static SerieRepositorio series = new SerieRepositorio();
 		static void Main(string[] args)
 		{
-			string opcaoUsuario = InterfaceUsuario.Inicio();
+				string opcaoUsuario = InterfaceUsuario.Inicio();
 
-			while (opcaoUsuario != "X")
-			{
-				switch (opcaoUsuario)
+				while (opcaoUsuario != "X")
 				{
-					case "1":
-						ListarTudo();
-						InterfaceUsuario.Pausa();
-						break;
-					case "2":
-						OpcaoSeries();
-						break;
-					case "3":
-						// OpcaoFilmes();
-						break;
+					switch (opcaoUsuario)
+					{
+						case "1":
+							ListarTudo();
+							InterfaceUsuario.Pausa();
+							break;
+						case "2":
+							OpcaoSeries();
+							break;
+						case "3":
+							// OpcaoFilmes();
+							break;
 
-					default:
-						Console.WriteLine($"Opção '{opcaoUsuario}' invalida.");
-						InterfaceUsuario.Pausa();
-						break;
+						default:
+							Console.WriteLine($"Opção '{opcaoUsuario}' invalida.");
+							InterfaceUsuario.Pausa();
+							break;
+					}
+
+					opcaoUsuario = InterfaceUsuario.Inicio();
 				}
 
-				opcaoUsuario = InterfaceUsuario.Inicio();
+				Console.WriteLine("Obrigado por utilizar nossos serviços.");
+				InterfaceUsuario.Pausa();
 			}
 
-			Console.WriteLine("Obrigado por utilizar nossos serviços.");
-			InterfaceUsuario.Pausa();
-		}
-
-		private static void ListarTudo()
-		{
-			ListarSeries();
-		}
-		private static void ListarSeries()
-		{
-			Console.WriteLine("SÉRIES:");
-
-			var lista = series.Lista();
-
-			if (lista.Count() == 0)
+			private static void ListarTudo()
 			{
-				Console.WriteLine("Nenhuma série cadastrada.");
-				return;
+				ListarSeries();
 			}
-
-			foreach (var serie in lista)
+			private static void ListarSeries()
 			{
-				if (!serie.EhExcluido())
+				Console.WriteLine("SÉRIES:");
+
+				var lista = series.Lista();
+
+				if (lista.Count() == 0)
 				{
-					Console.WriteLine("#ID {0}: - {1}", serie.retornaId(), serie.retornaTitulo());
-				}
-			}
-		}
-
-		private static void OpcaoSeries()
-		{
-			string opcaoUsuario = InterfaceUsuario.Series();
-
-			while (opcaoUsuario != "0")
-			{
-				switch (opcaoUsuario)
-				{
-					case "1":
-						ListarSeries();
-						InterfaceUsuario.Pausa();
-						break;
-					case "2":
-						InterfaceUsuario.InserirSerie(series);
-						break;
-					case "3":
-						// AtualizarSerie();
-						break;
-					case "4":
-						// ExcluirSerie();
-						break;
-					case "5":
-						// VisualizarSerie();
-						break;
-
-					default:
-						Console.WriteLine($"Opção '{opcaoUsuario}' invalida.");
-						InterfaceUsuario.Pausa();
-						break;
+					Console.WriteLine("Nenhuma série cadastrada.");
+					return;
 				}
 
-				opcaoUsuario = InterfaceUsuario.Series();
+				foreach (var serie in lista)
+				{
+					if (!serie.EhExcluido())
+					{
+						Console.WriteLine("#ID {0}: - {1}", serie.retornaId(), serie.retornaTitulo());
+					}
+				}
 			}
-		}
-		// private static void ExcluirSerie()
-		// {
-		// 	Console.Write("Digite o id da série: ");
-		// 	int indiceSerie = int.Parse(Console.ReadLine());
 
-		// 	repositorio.Exclui(indiceSerie);
-		// }
+			private static void OpcaoSeries()
+			{
+				string opcaoUsuario = InterfaceUsuario.Series();
 
-		// private static void VisualizarSerie()
-		// {
-		// 	Console.Write("Digite o id da série: ");
-		// 	int indiceSerie = int.Parse(Console.ReadLine());
+				while (opcaoUsuario != "0")
+				{
+					switch (opcaoUsuario)
+					{
+						case "1":
+							ListarSeries();
+							InterfaceUsuario.Pausa();
+							break;
+						case "2":
+							InterfaceUsuario.InserirSerie(series);
+							break;
+						case "3":
+							// AtualizarSerie();
+							break;
+						case "4":
+							// ExcluirSerie();
+							break;
+						case "5":
+							// VisualizarSerie();
+							break;
 
-		// 	var serie = repositorio.RetornaPorId(indiceSerie);
+						default:
+							Console.WriteLine($"Opção '{opcaoUsuario}' invalida.");
+							InterfaceUsuario.Pausa();
+							break;
+					}
 
-		// 	Console.WriteLine(serie);
-		// }
+					opcaoUsuario = InterfaceUsuario.Series();
+				}
+			}
+			// private static void ExcluirSerie()
+			// {
+			// 	Console.Write("Digite o id da série: ");
+			// 	int indiceSerie = int.Parse(Console.ReadLine());
 
-		// private static void AtualizarSerie()
-		// {
-		// 	Console.Write("Digite o id da série: ");
-		// 	int indiceSerie = int.Parse(Console.ReadLine());
+			// 	repositorio.Exclui(indiceSerie);
+			// }
 
-		// 	// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getvalues?view=netcore-3.1
-		// 	// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getname?view=netcore-3.1
-		// 	foreach (int i in Enum.GetValues(typeof(Genero)))
-		// 	{
-		// 		Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
-		// 	}
-		// 	Console.Write("Digite o gênero entre as opções acima: ");
-		// 	int entradaGenero = int.Parse(Console.ReadLine());
+			// private static void VisualizarSerie()
+			// {
+			// 	Console.Write("Digite o id da série: ");
+			// 	int indiceSerie = int.Parse(Console.ReadLine());
 
-		// 	Console.Write("Digite o Título da Série: ");
-		// 	string entradaTitulo = Console.ReadLine();
+			// 	var serie = repositorio.RetornaPorId(indiceSerie);
 
-		// 	Console.Write("Digite o Ano de Início da Série: ");
-		// 	int entradaAno = int.Parse(Console.ReadLine());
+			// 	Console.WriteLine(serie);
+			// }
 
-		// 	Console.Write("Digite a Descrição da Série: ");
-		// 	string entradaDescricao = Console.ReadLine();
+			// private static void AtualizarSerie()
+			// {
+			// 	Console.Write("Digite o id da série: ");
+			// 	int indiceSerie = int.Parse(Console.ReadLine());
 
-		// 	Serie atualizaSerie = new Serie(id: indiceSerie,
-		// 								genero: (Genero)entradaGenero,
-		// 								titulo: entradaTitulo,
-		// 								ano: entradaAno,
-		// 								descricao: entradaDescricao);
+			// 	// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getvalues?view=netcore-3.1
+			// 	// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getname?view=netcore-3.1
+			// 	foreach (int i in Enum.GetValues(typeof(Genero)))
+			// 	{
+			// 		Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
+			// 	}
+			// 	Console.Write("Digite o gênero entre as opções acima: ");
+			// 	int entradaGenero = int.Parse(Console.ReadLine());
 
-		// 	repositorio.Atualiza(indiceSerie, atualizaSerie);
-		// }
-		//
+			// 	Console.Write("Digite o Título da Série: ");
+			// 	string entradaTitulo = Console.ReadLine();
+
+			// 	Console.Write("Digite o Ano de Início da Série: ");
+			// 	int entradaAno = int.Parse(Console.ReadLine());
+
+			// 	Console.Write("Digite a Descrição da Série: ");
+			// 	string entradaDescricao = Console.ReadLine();
+
+			// 	Serie atualizaSerie = new Serie(id: indiceSerie,
+			// 								genero: (Genero)entradaGenero,
+			// 								titulo: entradaTitulo,
+			// 								ano: entradaAno,
+			// 								descricao: entradaDescricao);
+
+			// 	repositorio.Atualiza(indiceSerie, atualizaSerie);
+			// }
+			//
 
 	}
 }

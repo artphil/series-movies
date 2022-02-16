@@ -46,5 +46,15 @@ namespace SeriesMovies
 		{
 			throw new NotImplementedException();
 		}
+
+		// public string toJSON()
+		// {
+		// 	List<String> jsonList = new List<string>();
+		// 	foreach(var item in lista)
+		// 	{
+		// 		jsonList.Add(item.toJSON());
+		// 	}
+		// 	return jsonList.ToArray();
+		// }
 	}
 }

@@ -16,7 +16,7 @@ namespace SeriesMovies
 		public static string Inicio()
 		{
 			InterfaceUsuario.Cabecalho();
-			Console.WriteLine("1- Listar tudo");
+			Console.WriteLine("1- Listar titulos");
 			Console.WriteLine("2- Ir para séries");
 			Console.WriteLine("3- Ir para filmes");
 			Console.WriteLine("X- Sair");

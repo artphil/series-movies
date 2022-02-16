@@ -1,9 +1,11 @@
+using System.Text.Json;
+
 namespace SeriesMovies
 {
 	public class Temporada : EntidadeBase
 	{
-		private int Ano { get; set; }
-		private int Episodios { get; set; }
+		public int Ano { get; set; }
+		public int Episodios { get; set; }
 		public Temporada(int id, int ano, int episodios)
 		{
 			this.Id = id;
@@ -19,6 +21,11 @@ namespace SeriesMovies
 			retorno += $"Temporada: {this.Id + 1} - {this.Ano}" + Environment.NewLine;
 			retorno += $"Episodios: {this.Episodios}" + Environment.NewLine;
 			return retorno;
+		}
+
+		public string toJSON()
+		{
+			return JsonSerializer.Serialize(this);
 		}
 	}
 }

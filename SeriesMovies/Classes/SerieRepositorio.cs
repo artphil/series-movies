@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 using SeriesMovies.Interface;
 
 namespace SeriesMovies
@@ -5,7 +7,7 @@ namespace SeriesMovies
 	public class SerieRepositorio : IRepositorio<Serie>
 	{
 		private List<Serie> lista = new List<Serie>();
-		private string caminho = @"Data\series.txt";
+		private string caminho = Path.Join("Dados", "series.txt");
 		public void Atualiza(int id, Serie entidade)
 		{
 			lista[id] = entidade;
@@ -19,12 +21,19 @@ namespace SeriesMovies
 		public void Insere(Serie entidade)
 		{
 			lista.Add(entidade);
+			SalvaArquivo();
 		}
 
 		public void LeArquivo()
 		{
-			using (FileStream fs = File.OpenRead(caminho))
-			{}
+			using (StreamReader arquivo = File.OpenText(caminho))
+			{
+				string linha;
+				while ((linha = arquivo.ReadLine()) != null)
+				{
+					Console.WriteLine(linha);
+				}
+			}
 		}
 
 		public List<Serie> Lista()
@@ -45,9 +54,15 @@ namespace SeriesMovies
 		public void SalvaArquivo()
 		{
 			string linha = "";
-			using (FileStream arquivo = File.OpenWrite(caminho))
+			using (StreamWriter arquivo = File.CreateText(caminho))
 			{
-
+				foreach (Serie item in lista)
+				{
+					// linha = JsonSerializer.Serialize(item);
+					// Console.WriteLine(item);
+					Console.WriteLine(item.toJSON());
+					// arquivo.WriteLine(linha);
+				}
 			}
 		}
 	}

@@ -2,12 +2,17 @@ namespace SeriesMovies
 {
 	public abstract class EntidadeBase
 	{
-		protected int Id { get; set; }
-		protected bool Excluido { get; set; }
+		public int Id { get; set; }
+		public bool Excluido { get; set;}
 
 		public void Excluir()
 		{
 			this.Excluido = true;
+		}
+
+		public void Restaurar()
+		{
+			this.Excluido = false;
 		}
 
 		public bool EhExcluido()
