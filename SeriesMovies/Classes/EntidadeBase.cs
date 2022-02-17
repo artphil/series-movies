@@ -19,5 +19,11 @@ namespace SeriesMovies
 		{
 			return this.Excluido;
 		} 
+
+		 public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+		
 	}
 }

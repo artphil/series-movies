@@ -27,10 +27,8 @@ namespace SeriesMovies
 			SalvaArquivo();
 		}
 
-		public void adicionaTemporada(int serieID, int ano, int episodios)
+		public void adicionaTemporada(int serieID, Temporada temporada)
 		{
-			int id = lista[serieID].Temporadas.Count();
-			Temporada temporada = new Temporada(id, ano, episodios);
 			lista[serieID].Temporadas.Add(temporada);
 			SalvaArquivo();
 		}
@@ -46,7 +44,7 @@ namespace SeriesMovies
 
 		public Serie RetornaPorId(int id)
 		{
-			return new Serie(lista[id]);
+			return (Serie)lista[id].Clone();
 		}
 
 		public void LeArquivo()

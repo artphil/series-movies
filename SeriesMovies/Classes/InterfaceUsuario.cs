@@ -16,9 +16,9 @@ namespace SeriesMovies
 			Console.ReadKey();
 		}
 
-		public static bool Repete(string tipo)
+		public static bool Confirma(string mensagen)
 		{
-			Console.Write($"Deseja adicionar mais {tipo}? (S/N):");
+			Console.Write($"{mensagen} (S/N):");
 			string opcaoUsuario = Console.ReadLine().ToUpper();
 			return (opcaoUsuario == "S") ? true : false;
 		}

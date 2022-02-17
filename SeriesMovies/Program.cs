@@ -101,14 +101,13 @@ namespace SeriesMovies
 		private static void InserirSerie()
 		{
 			var serie = InterfaceUsuario.InserirSerie(series.ProximoId());
-			serie.adicionar(serie);
+			series.Insere(serie);
 			bool continua = true;
 			while (continua)
 			{
-			var temporada = InterfaceUsuario.InserirTemporada(serie.id, serie.retornaTemporadas());
-			serie.Temporadas.a
-			continua = InterfaceUsuario.Repete('Temporadas'); 
-				
+				var temporada = InterfaceUsuario.InserirTemporada(serie.retornaTemporadas());
+				series.adicionaTemporada(serie.retornaId(), temporada);
+				continua = InterfaceUsuario.Confirma("Deseja adicionar mais Temporadas?");
 			}
 		}
 
