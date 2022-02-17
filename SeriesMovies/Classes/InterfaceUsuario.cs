@@ -5,7 +5,9 @@ namespace SeriesMovies
 		private static void Cabecalho()
 		{
 			Console.Clear();
-			Console.WriteLine("Sua lista de Séries e Filmes");
+			Console.WriteLine("# # # # # # # # # # # # # # # # #");
+			Console.WriteLine("# Sua lista de Séries e Filmes  #");
+			Console.WriteLine("# # # # # # # # # # # # # # # # #");
 			Console.WriteLine("Informe a opção desejada:");
 		}
 		public static void Pausa()
@@ -13,6 +15,14 @@ namespace SeriesMovies
 			Console.WriteLine("Tecle ENTER para continuar...");
 			Console.ReadKey();
 		}
+
+		public static bool Repete(string tipo)
+		{
+			Console.Write($"Deseja adicionar mais {tipo}? (S/N):");
+			string opcaoUsuario = Console.ReadLine().ToUpper();
+			return (opcaoUsuario == "S") ? true : false;
+		}
+		
 		public static string Inicio()
 		{
 			InterfaceUsuario.Cabecalho();
@@ -45,6 +55,7 @@ namespace SeriesMovies
 
 		public static Serie InserirSerie(int serieID)
 		{
+			InterfaceUsuario.Cabecalho();
 			Console.WriteLine("Inserir nova série");
 
 			foreach (int i in Enum.GetValues(typeof(Genero)))
@@ -66,8 +77,9 @@ namespace SeriesMovies
 							 descricao: entradaDescricao);
 		}
 
-		private static Temporada InserirTemporada(int temporadaID)
+		public static Temporada InserirTemporada(int temporadaID)
 		{
+			InterfaceUsuario.Cabecalho();
 			Console.Write($"Informações da {temporadaID} temporada");
 
 			Console.Write("Digite o Ano de Início da Temporada: ");

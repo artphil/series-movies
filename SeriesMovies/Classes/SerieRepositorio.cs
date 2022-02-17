@@ -46,7 +46,7 @@ namespace SeriesMovies
 
 		public Serie RetornaPorId(int id)
 		{
-			return lista[id];
+			return new Serie(lista[id]);
 		}
 
 		public void LeArquivo()
