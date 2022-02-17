@@ -26,10 +26,10 @@ namespace SeriesMovies
 		public static string Inicio()
 		{
 			InterfaceUsuario.Cabecalho();
-			Console.WriteLine("1- Listar titulos");
-			Console.WriteLine("2- Ir para séries");
-			Console.WriteLine("3- Ir para filmes");
-			Console.WriteLine("X- Sair");
+			Console.WriteLine("1 - Listar titulos");
+			Console.WriteLine("2 - Ir para séries");
+			Console.WriteLine("3 - Ir para filmes");
+			Console.WriteLine("X - Sair");
 			Console.WriteLine();
 
 			string opcaoUsuario = Console.ReadLine().ToUpper();
@@ -40,12 +40,12 @@ namespace SeriesMovies
 		public static string Series()
 		{
 			InterfaceUsuario.Cabecalho();
-			Console.WriteLine("1- Listar séries");
-			Console.WriteLine("2- Inserir nova série");
-			Console.WriteLine("3- Atualizar série");
-			Console.WriteLine("4- Excluir série");
-			Console.WriteLine("5- Visualizar série");
-			Console.WriteLine("0- Voltar");
+			Console.WriteLine("1 - Listar séries");
+			Console.WriteLine("2 - Inserir nova série");
+			Console.WriteLine("3 - Atualizar série");
+			Console.WriteLine("4 - Excluir série");
+			Console.WriteLine("5 - Visualizar série");
+			Console.WriteLine("0 - Voltar");
 			Console.WriteLine();
 
 			string opcaoUsuario = Console.ReadLine().ToUpper();
@@ -80,7 +80,7 @@ namespace SeriesMovies
 		public static Temporada InserirTemporada(int temporadaID)
 		{
 			InterfaceUsuario.Cabecalho();
-			Console.Write($"Informações da {temporadaID} temporada");
+			Console.Write($"Informações da {temporadaID}º temporada");
 
 			Console.Write("Digite o Ano de Início da Temporada: ");
 			int temporadaAno = int.Parse(Console.ReadLine());
