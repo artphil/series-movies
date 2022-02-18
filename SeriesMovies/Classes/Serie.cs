@@ -26,29 +26,47 @@ namespace SeriesMovies
 			retorno += $"Gênero: {this.Genero}" + Environment.NewLine;
 			retorno += $"Descrição: {this.Descricao}" + Environment.NewLine;
 			retorno += $"Temporadas: {this.Temporadas.Count()}" + Environment.NewLine;
-			foreach (Temporada item in Temporadas)
-			{
-				retorno += item.ToString();
-			}
+			retorno = ImprimeTemporadas();
 			return retorno;
 		}
 
-		internal int retornaId()
+		public string ImprimeTemporadas(bool todas = false)
+		{
+			string retorno = "";
+			foreach (Temporada item in Temporadas)
+			{
+				if (todas || !item.EhExcluido())
+				{
+					retorno += item.ToString() + Environment.NewLine; ;
+				}
+			}
+
+			return retorno;
+		}
+
+		public int RetornaId()
 		{
 			return this.Id;
 		}
 
-		internal string retornaTitulo()
+		public string RetornaTitulo()
 		{
 			return this.Titulo;
 		}
 
-		internal int retornaTemporadas()
+		public int RetornaTemporadas()
 		{
 			return this.Temporadas.Count();
 		}
-
-		public string toJSON()
+		public Temporada TemporadaPorId(int id)
+		{
+			return (Temporada)Temporadas[id].Clone();
+		}
+		public void AtualizaTemporada(int id, Temporada entidade)
+		{
+			Temporadas[id] = entidade;
+		}
+		public string ToJSON()
 		{
 			JsonSerializerOptions options = new JsonSerializerOptions()
 			{

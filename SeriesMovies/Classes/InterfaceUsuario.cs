@@ -8,7 +8,7 @@ namespace SeriesMovies
 			Console.WriteLine("# # # # # # # # # # # # # # # # #");
 			Console.WriteLine("# Sua lista de Séries e Filmes  #");
 			Console.WriteLine("# # # # # # # # # # # # # # # # #");
-			Console.WriteLine("Informe a opção desejada:");
+			Console.WriteLine();
 		}
 		public static void Pausa()
 		{
@@ -26,6 +26,7 @@ namespace SeriesMovies
 		public static string Inicio()
 		{
 			InterfaceUsuario.Cabecalho();
+			Console.WriteLine("Informe a opção desejada:");
 			Console.WriteLine("1 - Listar todos os títulos");
 			Console.WriteLine("2 - Ir para séries");
 			Console.WriteLine("3 - Ir para filmes");
@@ -40,6 +41,7 @@ namespace SeriesMovies
 		public static string Series()
 		{
 			InterfaceUsuario.Cabecalho();
+			Console.WriteLine("Informe a opção desejada:");
 			Console.WriteLine("1 - Listar séries");
 			Console.WriteLine("2 - Inserir nova série");
 			Console.WriteLine("3 - Atualizar série");
@@ -75,7 +77,8 @@ namespace SeriesMovies
 			Console.WriteLine($"1 - Titulo: {serie.Titulo}");
 			Console.WriteLine($"2 - Genero: {serie.Genero}");
 			Console.WriteLine($"3 - Descrição: {serie.Descricao}");
-			Console.WriteLine($"4 - Tempradas: {serie.retornaTemporadas()}");
+			Console.WriteLine($"4 - Atualizar Temporadas: {serie.RetornaTemporadas()}");
+			Console.WriteLine($"5 - Inserir Temporada");
 			Console.WriteLine($"0 - Voltar");
 			Console.WriteLine();
 
@@ -87,13 +90,28 @@ namespace SeriesMovies
 		public static Temporada InserirTemporada(int temporadaID)
 		{
 			InterfaceUsuario.Cabecalho();
-			Console.Write($"Informações da {temporadaID}º temporada");
+			Console.WriteLine($"Informações da {temporadaID+1}º temporada");
 			int temporadaAno = ObterAno();
 			int temporadaEpisodios = ObterEpisodios();
 
 			return new Temporada(id: temporadaID,
 								 ano: temporadaAno,
 								 episodios: temporadaEpisodios);
+		}
+
+		public static string AtualizarTemporada(Temporada temporada)
+		{
+			InterfaceUsuario.Cabecalho();
+			Console.WriteLine($"Atualizar temporada #{temporada.Id}");
+			Console.WriteLine();
+			Console.WriteLine($"1 - Ano: {temporada.Ano}");
+			Console.WriteLine($"2 - Episodios: {temporada.Episodios}");
+			Console.WriteLine($"0 - Voltar");
+			Console.WriteLine();
+
+			string opcaoUsuario = Console.ReadLine().ToUpper();
+			Console.WriteLine();
+			return opcaoUsuario;
 		}
 
 		public static string ObterDescricao()
@@ -121,14 +139,14 @@ namespace SeriesMovies
 			return (Genero)entradaGenero;
 		}
 
-		private static int ObterEpisodios()
+		public static int ObterEpisodios()
 		{
 			Console.Write("Digite o número de episódios da Temporada: ");
 			int temporadaEpisodios = int.Parse(Console.ReadLine());
 			return temporadaEpisodios;
 		}
 
-		private static int ObterAno()
+		public static int ObterAno()
 		{
 			Console.Write("Digite o Ano de Início da Temporada: ");
 			int temporadaAno = int.Parse(Console.ReadLine());

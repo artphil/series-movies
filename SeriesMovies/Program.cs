@@ -58,7 +58,28 @@ namespace SeriesMovies
 			{
 				if (!serie.EhExcluido())
 				{
-					Console.WriteLine("#ID {0}: - {1}", serie.retornaId(), serie.retornaTitulo());
+					Console.WriteLine("#ID {0}: - {1}", serie.RetornaId(), serie.RetornaTitulo());
+				}
+			}
+		}
+
+		private static void ListarTemporadas(Serie serie)
+		{
+			Console.WriteLine("TEMPORADAS:");
+
+			var lista = serie.Temporadas;
+
+			if (lista.Count() == 0)
+			{
+				Console.WriteLine("Nenhuma série cadastrada.");
+				return;
+			}
+
+			foreach (var temporada in lista)
+			{
+				if (!temporada.EhExcluido())
+				{
+					Console.WriteLine("#ID {0}: {1}º Temporada - {2}", temporada.Id, temporada.Id+1, temporada.Ano);
 				}
 			}
 		}
@@ -105,10 +126,15 @@ namespace SeriesMovies
 			bool continua = true;
 			while (continua)
 			{
-				var temporada = InterfaceUsuario.InserirTemporada(serie.retornaTemporadas());
-				series.adicionaTemporada(serie.retornaId(), temporada);
+				InserirTemporada(serie);
 				continua = InterfaceUsuario.Confirma("Deseja adicionar mais Temporadas?");
 			}
+		}
+
+		private static void InserirTemporada(Serie serie)
+		{
+			var temporada = InterfaceUsuario.InserirTemporada(serie.RetornaTemporadas());
+			series.adicionaTemporada(serie.RetornaId(), temporada);
 		}
 
 		// private static void ExcluirSerie()
@@ -155,6 +181,10 @@ namespace SeriesMovies
 						break;
 
 					case "4":
+						AtualizarTemporada(serie);
+						break;	
+						case "5":
+						InserirTemporada(serie);
 						break;
 
 					default:
@@ -167,7 +197,37 @@ namespace SeriesMovies
 			}
 			series.Atualiza(serieID, serie);
 		}
+		public static void AtualizarTemporada(Serie serie)
+		{
 
+			ListarTemporadas(serie);
+			Console.WriteLine();
+			Console.Write("Digite o id da temporada: ");
+			int TemporadaID = int.Parse(Console.ReadLine());
+			Temporada temporada = serie.TemporadaPorId(TemporadaID);
+			string opcaoTemporadas = InterfaceUsuario.AtualizarTemporada(temporada);
 
+			while (opcaoTemporadas != "0")
+			{
+				switch (opcaoTemporadas)
+				{
+					case "1":
+						temporada.Ano = InterfaceUsuario.ObterAno();
+						break;
+
+					case "2":
+						temporada.Episodios = InterfaceUsuario.ObterEpisodios();
+						break;
+
+					default:
+						Console.WriteLine($"Opção '{opcaoTemporadas}' invalida.");
+						InterfaceUsuario.Pausa();
+						break;
+
+				}
+				opcaoTemporadas = InterfaceUsuario.AtualizarTemporada(temporada);
+			}
+			serie.AtualizaTemporada(TemporadaID, temporada);
+		}
 	}
 }

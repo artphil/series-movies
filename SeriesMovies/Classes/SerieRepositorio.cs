@@ -68,7 +68,7 @@ namespace SeriesMovies
 			{
 				foreach (Serie item in lista)
 				{
-					arquivo.WriteLine(item.toJSON());
+					arquivo.WriteLine(item.ToJSON());
 				}
 			}
 		}
