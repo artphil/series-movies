@@ -79,7 +79,7 @@ namespace SeriesMovies
 						InserirSerie();
 						break;
 					case "3":
-						// AtualizarSerie();
+						AtualizarSerie();
 						break;
 					case "4":
 						// ExcluirSerie();
@@ -129,38 +129,45 @@ namespace SeriesMovies
 			Console.WriteLine(serie);
 		}
 
-		// private static void AtualizarSerie()
-		// {
-		// 	Console.Write("Digite o id da série: ");
-		// 	int indiceSerie = int.Parse(Console.ReadLine());
+		private static void AtualizarSerie()
+		{
+			ListarSeries();
+			Console.WriteLine();
+			Console.Write("Digite o id da série: ");
+			int serieID = int.Parse(Console.ReadLine());
+			Serie serie = series.RetornaPorId(serieID);
+			string opcaoSeries = InterfaceUsuario.AtualizarSerie(serie);
 
-		// 	// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getvalues?view=netcore-3.1
-		// 	// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getname?view=netcore-3.1
-		// 	foreach (int i in Enum.GetValues(typeof(Genero)))
-		// 	{
-		// 		Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
-		// 	}
-		// 	Console.Write("Digite o gênero entre as opções acima: ");
-		// 	int entradaGenero = int.Parse(Console.ReadLine());
+			while (opcaoSeries != "0")
+			{
+				switch (opcaoSeries)
+				{
+					case "1":
+						serie.Titulo = InterfaceUsuario.ObterTitulo();
+						break;
 
-		// 	Console.Write("Digite o Título da Série: ");
-		// 	string entradaTitulo = Console.ReadLine();
+					case "2":
+						serie.Genero = InterfaceUsuario.ObterGenero();
+						break;
 
-		// 	Console.Write("Digite o Ano de Início da Série: ");
-		// 	int entradaAno = int.Parse(Console.ReadLine());
+					case "3":
+						serie.Descricao = InterfaceUsuario.ObterDescricao();
+						break;
 
-		// 	Console.Write("Digite a Descrição da Série: ");
-		// 	string entradaDescricao = Console.ReadLine();
+					case "4":
+						break;
 
-		// 	Serie atualizaSerie = new Serie(id: indiceSerie,
-		// 								genero: (Genero)entradaGenero,
-		// 								titulo: entradaTitulo,
-		// 								ano: entradaAno,
-		// 								descricao: entradaDescricao);
+					default:
+						Console.WriteLine($"Opção '{opcaoSeries}' invalida.");
+						InterfaceUsuario.Pausa();
+						break;
 
-		// 	repositorio.Atualiza(indiceSerie, atualizaSerie);
-		// }
-		//
+				}
+				opcaoSeries = InterfaceUsuario.AtualizarSerie(serie);
+			}
+			series.Atualiza(serieID, serie);
+		}
+
 
 	}
 }

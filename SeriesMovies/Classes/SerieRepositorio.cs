@@ -57,7 +57,6 @@ namespace SeriesMovies
 					while ((linha = arquivo.ReadLine()) != null)
 					{
 						lista.Add(Serie.ParseJSON(linha));
-						Console.WriteLine(lista.Last());
 					}
 				}
 			}

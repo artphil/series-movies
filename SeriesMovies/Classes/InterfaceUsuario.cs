@@ -22,11 +22,11 @@ namespace SeriesMovies
 			string opcaoUsuario = Console.ReadLine().ToUpper();
 			return (opcaoUsuario == "S") ? true : false;
 		}
-		
+
 		public static string Inicio()
 		{
 			InterfaceUsuario.Cabecalho();
-			Console.WriteLine("1 - Listar titulos");
+			Console.WriteLine("1 - Listar todos os títulos");
 			Console.WriteLine("2 - Ir para séries");
 			Console.WriteLine("3 - Ir para filmes");
 			Console.WriteLine("X - Sair");
@@ -57,40 +57,82 @@ namespace SeriesMovies
 		{
 			InterfaceUsuario.Cabecalho();
 			Console.WriteLine("Inserir nova série");
-
-			foreach (int i in Enum.GetValues(typeof(Genero)))
-			{
-				Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
-			}
-			Console.Write("Digite o gênero entre as opções acima: ");
-			int entradaGenero = int.Parse(Console.ReadLine());
-
-			Console.Write("Digite o Título da Série: ");
-			string entradaTitulo = Console.ReadLine();
-
-			Console.Write("Digite a Descrição da Série: ");
-			string entradaDescricao = Console.ReadLine();
+			Genero entradaGenero = ObterGenero();
+			string entradaTitulo = ObterTitulo();
+			string entradaDescricao = ObterDescricao();
 
 			return new Serie(id: serieID,
-							 genero: (Genero)entradaGenero,
+							 genero: entradaGenero,
 							 titulo: entradaTitulo,
 							 descricao: entradaDescricao);
+		}
+
+		public static string AtualizarSerie(Serie serie)
+		{
+			InterfaceUsuario.Cabecalho();
+			Console.WriteLine($"Atualizar série #{serie.Id}");
+			Console.WriteLine();
+			Console.WriteLine($"1 - Titulo: {serie.Titulo}");
+			Console.WriteLine($"2 - Genero: {serie.Genero}");
+			Console.WriteLine($"3 - Descrição: {serie.Descricao}");
+			Console.WriteLine($"4 - Tempradas: {serie.retornaTemporadas()}");
+			Console.WriteLine($"0 - Voltar");
+			Console.WriteLine();
+
+			string opcaoUsuario = Console.ReadLine().ToUpper();
+			Console.WriteLine();
+			return opcaoUsuario;
 		}
 
 		public static Temporada InserirTemporada(int temporadaID)
 		{
 			InterfaceUsuario.Cabecalho();
 			Console.Write($"Informações da {temporadaID}º temporada");
+			int temporadaAno = ObterAno();
+			int temporadaEpisodios = ObterEpisodios();
 
-			Console.Write("Digite o Ano de Início da Temporada: ");
-			int temporadaAno = int.Parse(Console.ReadLine());
+			return new Temporada(id: temporadaID,
+								 ano: temporadaAno,
+								 episodios: temporadaEpisodios);
+		}
 
+		public static string ObterDescricao()
+		{
+			Console.Write("Digite a Descrição da Série: ");
+			string entradaDescricao = Console.ReadLine();
+			return entradaDescricao;
+		}
+
+		public static string ObterTitulo()
+		{
+			Console.Write("Digite o Título da Série: ");
+			string entradaTitulo = Console.ReadLine();
+			return entradaTitulo;
+		}
+
+		public static Genero ObterGenero()
+		{
+			foreach (int i in Enum.GetValues(typeof(Genero)))
+			{
+				Console.WriteLine("{0} - {1}", i, Enum.GetName(typeof(Genero), i));
+			}
+			Console.Write("Digite o gênero entre as opções acima: ");
+			int entradaGenero = int.Parse(Console.ReadLine());
+			return (Genero)entradaGenero;
+		}
+
+		private static int ObterEpisodios()
+		{
 			Console.Write("Digite o número de episódios da Temporada: ");
 			int temporadaEpisodios = int.Parse(Console.ReadLine());
+			return temporadaEpisodios;
+		}
 
-			return new Temporada(id: temporadaID, 
-								 ano: temporadaAno, 
-								 episodios: temporadaEpisodios);
+		private static int ObterAno()
+		{
+			Console.Write("Digite o Ano de Início da Temporada: ");
+			int temporadaAno = int.Parse(Console.ReadLine());
+			return temporadaAno;
 		}
 	}
 }

@@ -1,5 +1,6 @@
-{"Genero":2,"Titulo":"2","Descricao":"2","Temporadas":[{"Ano":2,"Episodios":2,"Id":0,"Excluido":false}],"Id":0,"Excluido":false}
+{"Genero":2,"Titulo":"Jumanji","Descricao":"Uma aventura na selva","Temporadas":[{"Ano":2,"Episodios":2,"Id":0,"Excluido":false}],"Id":0,"Excluido":false}
 {"Genero":2,"Titulo":"2","Descricao":"2","Temporadas":[{"Ano":2,"Episodios":2,"Id":0,"Excluido":false}],"Id":1,"Excluido":false}
 {"Genero":2,"Titulo":"2","Descricao":"2","Temporadas":[{"Ano":22,"Episodios":222,"Id":0,"Excluido":false}],"Id":2,"Excluido":false}
 {"Genero":2,"Titulo":"2","Descricao":"2","Temporadas":[{"Ano":2,"Episodios":2,"Id":0,"Excluido":false}],"Id":3,"Excluido":false}
 {"Genero":2,"Titulo":"2","Descricao":"2","Temporadas":[],"Id":4,"Excluido":false}
+{"Genero":1,"Titulo":"Um tira da pesada","Descricao":"policial","Temporadas":[{"Ano":1996,"Episodios":21,"Id":0,"Excluido":false}],"Id":5,"Excluido":false}
