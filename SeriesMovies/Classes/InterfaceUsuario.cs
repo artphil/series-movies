@@ -77,7 +77,7 @@ namespace SeriesMovies
 			Console.WriteLine($"1 - Titulo: {serie.Titulo}");
 			Console.WriteLine($"2 - Genero: {serie.Genero}");
 			Console.WriteLine($"3 - Descrição: {serie.Descricao}");
-			Console.WriteLine($"4 - Atualizar Temporadas: {serie.RetornaTemporadas()}");
+			Console.WriteLine($"4 - Atualizar Temporadas: {serie.RetornaNumeroTemporadas()}");
 			Console.WriteLine($"5 - Inserir Temporada");
 			Console.WriteLine($"0 - Voltar");
 			Console.WriteLine();
@@ -114,16 +114,67 @@ namespace SeriesMovies
 			return opcaoUsuario;
 		}
 
+		public static string Filmes()
+		{
+			InterfaceUsuario.Cabecalho();
+			Console.WriteLine("Informe a opção desejada:");
+			Console.WriteLine("1 - Listar filmes");
+			Console.WriteLine("2 - Inserir novo filme");
+			Console.WriteLine("3 - Atualizar filme");
+			Console.WriteLine("4 - Excluir filme");
+			Console.WriteLine("5 - Visualizar filme");
+			Console.WriteLine("0 - Voltar");
+			Console.WriteLine();
+
+			string opcaoUsuario = Console.ReadLine().ToUpper();
+			Console.WriteLine();
+			return opcaoUsuario;
+		}
+
+		public static Filme InserirFilme(int filmeID)
+		{
+			InterfaceUsuario.Cabecalho();
+			Console.WriteLine("Inserir novo filme");
+			Genero entradaGenero = ObterGenero();
+			string entradaTitulo = ObterTitulo();
+			string entradaDescricao = ObterDescricao();
+			int entradaAno = ObterAno();
+
+			return new Filme(id: filmeID,
+							 genero: entradaGenero,
+							 titulo: entradaTitulo,
+							 descricao: entradaDescricao,
+							 ano: entradaAno);
+		}
+
+		public static string AtualizarFilme(Filme filme)
+		{
+			InterfaceUsuario.Cabecalho();
+			Console.WriteLine($"Atualizar filme #{filme.Id}");
+			Console.WriteLine();
+			Console.WriteLine($"1 - Titulo: {filme.Titulo}");
+			Console.WriteLine($"2 - Genero: {filme.Genero}");
+			Console.WriteLine($"3 - Descrição: {filme.Descricao}");
+			Console.WriteLine($"3 - Ano: {filme.Ano}");
+			Console.WriteLine($"0 - Voltar");
+			Console.WriteLine();
+
+			string opcaoUsuario = Console.ReadLine().ToUpper();
+			Console.WriteLine();
+			return opcaoUsuario;
+		}
+
+
 		public static string ObterDescricao()
 		{
-			Console.Write("Digite a Descrição da Série: ");
+			Console.Write("Digite a Descrição: ");
 			string entradaDescricao = Console.ReadLine();
 			return entradaDescricao;
 		}
 
 		public static string ObterTitulo()
 		{
-			Console.Write("Digite o Título da Série: ");
+			Console.Write("Digite o Título: ");
 			string entradaTitulo = Console.ReadLine();
 			return entradaTitulo;
 		}
@@ -141,14 +192,14 @@ namespace SeriesMovies
 
 		public static int ObterEpisodios()
 		{
-			Console.Write("Digite o número de episódios da Temporada: ");
+			Console.Write("Digite o número de episódios da temporada: ");
 			int temporadaEpisodios = int.Parse(Console.ReadLine());
 			return temporadaEpisodios;
 		}
 
 		public static int ObterAno()
 		{
-			Console.Write("Digite o Ano de Início da Temporada: ");
+			Console.Write("Digite o ano de lançamento: ");
 			int temporadaAno = int.Parse(Console.ReadLine());
 			return temporadaAno;
 		}

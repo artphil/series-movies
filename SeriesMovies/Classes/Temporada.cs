@@ -18,7 +18,7 @@ namespace SeriesMovies
 		public override string ToString()
 		{
 			string retorno = "";
-			retorno += $"Temporada: {this.Id + 1} - {this.Ano}" + Environment.NewLine;
+			retorno += $"Temporada: {this.Id + 1}º - ({this.Ano})" + Environment.NewLine;
 			retorno += $"Episodios: {this.Episodios}" + Environment.NewLine;
 			return retorno;
 		}

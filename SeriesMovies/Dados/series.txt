@@ -2,5 +2,6 @@
 {"Genero":4,"Titulo":"Marrocos","Descricao":"Vida e obra","Temporadas":[{"Ano":2020,"Episodios":3,"Id":0,"Excluido":false},{"Ano":1963,"Episodios":4,"Id":1,"Excluido":false}],"Id":1,"Excluido":false}
 {"Genero":2,"Titulo":"AAAA","Descricao":"Umaaaaa","Temporadas":[{"Ano":1999,"Episodios":10,"Id":0,"Excluido":false},{"Ano":2000,"Episodios":10,"Id":1,"Excluido":false}],"Id":2,"Excluido":false}
 {"Genero":2,"Titulo":"2","Descricao":"2","Temporadas":[{"Ano":2,"Episodios":2,"Id":0,"Excluido":false}],"Id":3,"Excluido":false}
-{"Genero":2,"Titulo":"2","Descricao":"2","Temporadas":[],"Id":4,"Excluido":false}
+{"Genero":2,"Titulo":"2","Descricao":"2","Temporadas":[],"Id":4,"Excluido":true}
 {"Genero":1,"Titulo":"Um tira da pesada","Descricao":"policial","Temporadas":[{"Ano":1996,"Episodios":21,"Id":0,"Excluido":false}],"Id":5,"Excluido":false}
+{"Genero":13,"Titulo":"Oitavo passageiro","Descricao":"Alien","Temporadas":[{"Ano":2001,"Episodios":23,"Id":0,"Excluido":false}],"Id":6,"Excluido":false}

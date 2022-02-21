@@ -2,7 +2,7 @@ namespace SeriesMovies.Interface
 {
 	public interface IRepositorio<T>
 	{
-		public List<T> Lista();
+		public List<T> RetornaLista();
 		public T RetornaPorId(int id);
 		public void Insere(T entidade);
 		public void Exclui(int id);

@@ -9,6 +9,25 @@ namespace SeriesMovies
 	{
 		private List<Filme> lista = new List<Filme>();
 		private string caminho = Path.Join("Dados", "filmes.txt");
+
+		public void ImprimeLista()
+		{
+			Console.WriteLine("Filmes:");
+
+			if (this.lista.Count() == 0)
+			{
+				Console.WriteLine("Nenhum filme cadastrado.");
+				return;
+			}
+
+			foreach (var filme in this.lista)
+			{
+				if (!filme.EhExcluido())
+				{
+					Console.WriteLine("#ID {0}: - {1}", filme.RetornaId(), filme.RetornaTitulo());
+				}
+			}
+		}
 		public void Atualiza(int id, Filme entidade)
 		{
 			lista[id] = entidade;
@@ -27,12 +46,7 @@ namespace SeriesMovies
 			SalvaArquivo();
 		}
 
-		public void adicionaTemporada(int FilmeID, Temporada temporada)
-		{
-			lista[FilmeID].Temporadas.Add(temporada);
-			SalvaArquivo();
-		}
-		public List<Filme> Lista()
+		public List<Filme> RetornaLista()
 		{
 			return lista;
 		}

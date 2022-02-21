@@ -26,7 +26,7 @@ namespace SeriesMovies
 			retorno += $"Gênero: {this.Genero}" + Environment.NewLine;
 			retorno += $"Descrição: {this.Descricao}" + Environment.NewLine;
 			retorno += $"Temporadas: {this.Temporadas.Count()}" + Environment.NewLine;
-			retorno = ImprimeTemporadas();
+			retorno += ImprimeTemporadas();
 			return retorno;
 		}
 
@@ -54,9 +54,14 @@ namespace SeriesMovies
 			return this.Titulo;
 		}
 
-		public int RetornaTemporadas()
+		public int RetornaNumeroTemporadas()
 		{
 			return this.Temporadas.Count();
+		}
+
+		public Temporada[] RetornaTemporadas()
+		{
+			return Temporadas.ToArray();
 		}
 		public Temporada TemporadaPorId(int id)
 		{

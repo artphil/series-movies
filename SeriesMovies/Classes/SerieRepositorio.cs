@@ -9,6 +9,46 @@ namespace SeriesMovies
 	{
 		private List<Serie> lista = new List<Serie>();
 		private string caminho = Path.Join("Dados", "series.txt");
+		
+		public void ImprimeLista()
+		{
+			Console.WriteLine("SÉRIES:");
+
+			if (this.lista.Count() == 0)
+			{
+				Console.WriteLine("Nenhuma série cadastrada.");
+				return;
+			}
+
+			foreach (var serie in this.lista)
+			{
+				if (!serie.EhExcluido())
+				{
+					Console.WriteLine("#ID {0}: - {1}", serie.RetornaId(), serie.RetornaTitulo());
+				}
+			}
+		}
+
+		public void ImprimeTemporadas(int serieID)
+		{
+			Console.WriteLine("TEMPORADAS:");
+
+			var listaTemporadas = this.lista[serieID].RetornaTemporadas();
+
+			if (listaTemporadas.Count() == 0)
+			{
+				Console.WriteLine("Nenhuma série cadastrada.");
+				return;
+			}
+
+			foreach (var temporada in listaTemporadas)
+			{
+				if (!temporada.EhExcluido())
+				{
+					Console.WriteLine("#ID {0}: {1}º Temporada - {2}", temporada.Id, temporada.Id + 1, temporada.Ano);
+				}
+			}
+		}
 		public void Atualiza(int id, Serie entidade)
 		{
 			lista[id] = entidade;
@@ -27,12 +67,12 @@ namespace SeriesMovies
 			SalvaArquivo();
 		}
 
-		public void adicionaTemporada(int serieID, Temporada temporada)
+		public void AdicionaTemporada(int serieID, Temporada temporada)
 		{
 			lista[serieID].Temporadas.Add(temporada);
 			SalvaArquivo();
 		}
-		public List<Serie> Lista()
+		public List<Serie> RetornaLista()
 		{
 			return lista;
 		}

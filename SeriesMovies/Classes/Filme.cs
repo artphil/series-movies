@@ -10,7 +10,7 @@ namespace SeriesMovies
 		public string Descricao { get; set; }
 		public int Ano { get; set; }
 
-		public Filme(int id, Genero genero, string titulo, string descricao, string ano)
+		public Filme(int id, Genero genero, string titulo, string descricao, int ano)
 		{
 			this.Id = id;
 			this.Genero = genero;
@@ -54,7 +54,7 @@ namespace SeriesMovies
 			{
 				IncludeFields = true,
 			};
-			return JsonSerializer.Deserialize<Serie>(json, options);
+			return JsonSerializer.Deserialize<Filme>(json, options);
 		}
 	}
 }

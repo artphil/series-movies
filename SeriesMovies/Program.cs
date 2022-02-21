@@ -4,9 +4,11 @@ namespace SeriesMovies
 	class Program
 	{
 		static SerieRepositorio series = new SerieRepositorio();
+		static FilmeRepositorio filmes = new FilmeRepositorio();
 		static void Main(string[] args)
 		{
 			series.LeArquivo();
+			filmes.LeArquivo();
 
 			string opcaoUsuario = InterfaceUsuario.Inicio();
 
@@ -22,7 +24,7 @@ namespace SeriesMovies
 						OpcaoSeries();
 						break;
 					case "3":
-						// OpcaoFilmes();
+						OpcaoFilmes();
 						break;
 
 					default:
@@ -40,50 +42,12 @@ namespace SeriesMovies
 
 		private static void ListarTudo()
 		{
-			ListarSeries();
-		}
-		private static void ListarSeries()
-		{
-			Console.WriteLine("SÉRIES:");
-
-			var lista = series.Lista();
-
-			if (lista.Count() == 0)
-			{
-				Console.WriteLine("Nenhuma série cadastrada.");
-				return;
-			}
-
-			foreach (var serie in lista)
-			{
-				if (!serie.EhExcluido())
-				{
-					Console.WriteLine("#ID {0}: - {1}", serie.RetornaId(), serie.RetornaTitulo());
-				}
-			}
+			series.ImprimeLista();
+			System.Console.WriteLine();
+			filmes.ImprimeLista();
 		}
 
-		private static void ListarTemporadas(Serie serie)
-		{
-			Console.WriteLine("TEMPORADAS:");
-
-			var lista = serie.Temporadas;
-
-			if (lista.Count() == 0)
-			{
-				Console.WriteLine("Nenhuma série cadastrada.");
-				return;
-			}
-
-			foreach (var temporada in lista)
-			{
-				if (!temporada.EhExcluido())
-				{
-					Console.WriteLine("#ID {0}: {1}º Temporada - {2}", temporada.Id, temporada.Id+1, temporada.Ano);
-				}
-			}
-		}
-
+		// SERIES
 		private static void OpcaoSeries()
 		{
 			string opcaoUsuario = InterfaceUsuario.Series();
@@ -93,7 +57,7 @@ namespace SeriesMovies
 				switch (opcaoUsuario)
 				{
 					case "1":
-						ListarSeries();
+						series.ImprimeLista(); ;
 						InterfaceUsuario.Pausa();
 						break;
 					case "2":
@@ -103,7 +67,7 @@ namespace SeriesMovies
 						AtualizarSerie();
 						break;
 					case "4":
-						// ExcluirSerie();
+						ExcluirSerie();
 						break;
 					case "5":
 						VisualizarSerie();
@@ -130,20 +94,19 @@ namespace SeriesMovies
 				continua = InterfaceUsuario.Confirma("Deseja adicionar mais Temporadas?");
 			}
 		}
-
 		private static void InserirTemporada(Serie serie)
 		{
-			var temporada = InterfaceUsuario.InserirTemporada(serie.RetornaTemporadas());
-			series.adicionaTemporada(serie.RetornaId(), temporada);
+			var temporada = InterfaceUsuario.InserirTemporada(serie.RetornaNumeroTemporadas());
+			series.AdicionaTemporada(serie.RetornaId(), temporada);
 		}
 
-		// private static void ExcluirSerie()
-		// {
-		// 	Console.Write("Digite o id da série: ");
-		// 	int indiceSerie = int.Parse(Console.ReadLine());
+		private static void ExcluirSerie()
+		{
+			Console.Write("Digite o id da série: ");
+			int indiceSerie = int.Parse(Console.ReadLine());
 
-		// 	repositorio.Exclui(indiceSerie);
-		// }
+			series.Exclui(indiceSerie);
+		}
 
 		private static void VisualizarSerie()
 		{
@@ -157,7 +120,7 @@ namespace SeriesMovies
 
 		private static void AtualizarSerie()
 		{
-			ListarSeries();
+			series.ImprimeLista(); ;
 			Console.WriteLine();
 			Console.Write("Digite o id da série: ");
 			int serieID = int.Parse(Console.ReadLine());
@@ -182,8 +145,8 @@ namespace SeriesMovies
 
 					case "4":
 						AtualizarTemporada(serie);
-						break;	
-						case "5":
+						break;
+					case "5":
 						InserirTemporada(serie);
 						break;
 
@@ -200,7 +163,7 @@ namespace SeriesMovies
 		public static void AtualizarTemporada(Serie serie)
 		{
 
-			ListarTemporadas(serie);
+			series.ImprimeTemporadas(serie.Id);
 			Console.WriteLine();
 			Console.Write("Digite o id da temporada: ");
 			int TemporadaID = int.Parse(Console.ReadLine());
@@ -228,6 +191,106 @@ namespace SeriesMovies
 				opcaoTemporadas = InterfaceUsuario.AtualizarTemporada(temporada);
 			}
 			serie.AtualizaTemporada(TemporadaID, temporada);
+		}
+
+		// FILMES
+		private static void OpcaoFilmes()
+		{
+			string opcaoUsuario = InterfaceUsuario.Filmes();
+
+			while (opcaoUsuario != "0")
+			{
+				switch (opcaoUsuario)
+				{
+					case "1":
+						filmes.ImprimeLista(); ;
+						InterfaceUsuario.Pausa();
+						break;
+					case "2":
+						InserirFilme();
+						break;
+					case "3":
+						AtualizarFilme();
+						break;
+					case "4":
+						ExcluirFilme();
+						break;
+					case "5":
+						VisualizarFilme();
+						InterfaceUsuario.Pausa();
+						break;
+
+					default:
+						Console.WriteLine($"Opção '{opcaoUsuario}' invalida.");
+						InterfaceUsuario.Pausa();
+						break;
+				}
+
+				opcaoUsuario = InterfaceUsuario.Series();
+			}
+		}
+		private static void InserirFilme()
+		{
+			var filme = InterfaceUsuario.InserirFilme(filmes.ProximoId());
+			filmes.Insere(filme);
+		}
+
+		private static void ExcluirFilme()
+		{
+			Console.Write("Digite o id do filme: ");
+			int indiceFilme = int.Parse(Console.ReadLine());
+
+			filmes.Exclui(indiceFilme);
+		}
+
+		private static void VisualizarFilme()
+		{
+			Console.Write("Digite o id do filme: ");
+			int indiceFilme = int.Parse(Console.ReadLine());
+
+			var filme = filmes.RetornaPorId(indiceFilme);
+
+			Console.WriteLine(filme);
+		}
+
+		private static void AtualizarFilme()
+		{
+			filmes.ImprimeLista(); ;
+			Console.WriteLine();
+			Console.Write("Digite o id da série: ");
+			int filmeID = int.Parse(Console.ReadLine());
+			Filme filme = filmes.RetornaPorId(filmeID);
+			string opcaoFilmes = InterfaceUsuario.AtualizarFilme(filme);
+
+			while (opcaoFilmes != "0")
+			{
+				switch (opcaoFilmes)
+				{
+					case "1":
+						filme.Titulo = InterfaceUsuario.ObterTitulo();
+						break;
+
+					case "2":
+						filme.Genero = InterfaceUsuario.ObterGenero();
+						break;
+
+					case "3":
+						filme.Descricao = InterfaceUsuario.ObterDescricao();
+						break;
+
+					case "4":
+						filme.Ano = InterfaceUsuario.ObterAno();
+						break;
+
+					default:
+						Console.WriteLine($"Opção '{opcaoFilmes}' invalida.");
+						InterfaceUsuario.Pausa();
+						break;
+
+				}
+				opcaoFilmes = InterfaceUsuario.AtualizarFilme(filme);
+			}
+			filmes.Atualiza(filmeID, filme);
 		}
 	}
 }
