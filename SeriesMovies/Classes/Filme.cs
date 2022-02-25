@@ -39,22 +39,22 @@ namespace SeriesMovies
 			return this.Titulo;
 		}
 
-		public string ToJSON()
-		{
-			JsonSerializerOptions options = new JsonSerializerOptions()
-			{
-				IncludeFields = true,
-			};
-			return JsonSerializer.Serialize(this, options);
-		}
+		// public string ToJSON()
+		// {
+		// 	JsonSerializerOptions options = new JsonSerializerOptions()
+		// 	{
+		// 		IncludeFields = true,
+		// 	};
+		// 	return JsonSerializer.Serialize(this, options);
+		// }
 
-		public static Filme ParseJSON(string json)
-		{
-			JsonSerializerOptions options = new JsonSerializerOptions()
-			{
-				IncludeFields = true,
-			};
-			return JsonSerializer.Deserialize<Filme>(json, options);
-		}
+		// public static Filme ParseJSON(string json)
+		// {
+		// 	JsonSerializerOptions options = new JsonSerializerOptions()
+		// 	{
+		// 		IncludeFields = true,
+		// 	};
+		// 	return JsonSerializer.Deserialize<Filme>(json, options);
+		// }
 	}
 }

@@ -8,7 +8,7 @@ namespace SeriesMovies
 		static void Main(string[] args)
 		{
 			series.LeArquivo();
-			filmes.LeArquivo();
+			// filmes.LeArquivo();
 
 			string opcaoUsuario = InterfaceUsuario.Inicio();
 

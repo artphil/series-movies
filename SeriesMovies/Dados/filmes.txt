@@ -1,3 +1,1 @@
-{"Genero":8,"Titulo":"O Magico de Oz","Descricao":"desenho","Ano":1986,"Id":0,"Excluido":false}
-{"Genero":3,"Titulo":"Entrando numa Fria","Descricao":"Romance","Ano":1999,"Id":1,"Excluido":false}
-{"Genero":2,"Titulo":"2","Descricao":"2","Ano":2,"Id":2,"Excluido":true}
+[{"Genero":2,"Titulo":"Jumanji","Descricao":"doidera","Ano":1996,"Id":0,"Excluido":false}]

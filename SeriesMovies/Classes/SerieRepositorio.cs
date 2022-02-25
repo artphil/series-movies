@@ -5,11 +5,13 @@ using SeriesMovies.Interface;
 
 namespace SeriesMovies
 {
-	public class SerieRepositorio : IRepositorio<Serie>
+	public class SerieRepositorio : RepositorioBase<Serie>, IRepositorio<Serie>
 	{
-		private List<Serie> lista = new List<Serie>();
-		private string caminho = Path.Join("Dados", "series.txt");
-		
+		public SerieRepositorio():	base(Path.Join("Dados", "series.txt"))
+		{
+			LeArquivo();
+		}
+
 		public void ImprimeLista()
 		{
 			Console.WriteLine("SÉRIES:");
@@ -87,30 +89,5 @@ namespace SeriesMovies
 			return (Serie)lista[id].Clone();
 		}
 
-		public void LeArquivo()
-		{
-			if (File.Exists(caminho))
-			{
-				using (StreamReader arquivo = File.OpenText(caminho))
-				{
-					string linha;
-					while ((linha = arquivo.ReadLine()) != null)
-					{
-						lista.Add(Serie.ParseJSON(linha));
-					}
-				}
-			}
-		}
-		public void SalvaArquivo()
-		{
-			string linha = "";
-			using (StreamWriter arquivo = File.CreateText(caminho))
-			{
-				foreach (Serie item in lista)
-				{
-					arquivo.WriteLine(item.ToJSON());
-				}
-			}
-		}
 	}
 }
