@@ -38,10 +38,6 @@ namespace SeriesMovies
 			{
 				string dados = File.ReadAllText(caminho);
 				this.lista = new List<T>(ParseJSON(dados));
-				// using (var arquivo = File.Open(caminho, FileMode.Open))
-				// {
-				// 	lista = List<T>(ParseJSON(arquivo.Read));
-				// }
 			}
 			else
 			{
@@ -50,10 +46,7 @@ namespace SeriesMovies
 		}
 		public void SalvaArquivo()
 		{
-			// using (var arquivo = File.Open(caminho, FileMode.CreateNew))
-			// {
 			File.WriteAllText(caminho, ToJSON(this.lista));
-			// }
 		}
 	}
 }
