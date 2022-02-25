@@ -19,6 +19,7 @@ namespace SeriesMovies
 			JsonSerializerOptions options = new JsonSerializerOptions()
 			{
 				IncludeFields = true,
+				WriteIndented = true,
 			};
 			return JsonSerializer.Serialize(dados, options);
 		}

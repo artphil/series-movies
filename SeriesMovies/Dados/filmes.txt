@@ -1,1 +1,18 @@
-[{"Genero":2,"Titulo":"Jumanji","Descricao":"doidera","Ano":1996,"Id":0,"Excluido":false}]
+[
+  {
+    "Genero": 2,
+    "Titulo": "Jumanji",
+    "Descricao": "doidera",
+    "Ano": 1996,
+    "Id": 0,
+    "Excluido": false
+  },
+  {
+    "Genero": 9,
+    "Titulo": "De Volta Para o Futuro",
+    "Descricao": "1990",
+    "Ano": 1990,
+    "Id": 1,
+    "Excluido": false
+  }
+]
