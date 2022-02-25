@@ -25,7 +25,7 @@ namespace SeriesMovies
 			retorno += $"Série: {this.Titulo}" + Environment.NewLine;
 			retorno += $"Gênero: {this.Genero}" + Environment.NewLine;
 			retorno += $"Descrição: {this.Descricao}" + Environment.NewLine;
-			retorno += $"Temporadas: {this.Temporadas.Count()}" + Environment.NewLine;
+			retorno += "Temporadas:" + Environment.NewLine;
 			retorno += ImprimeTemporadas();
 			return retorno;
 		}
