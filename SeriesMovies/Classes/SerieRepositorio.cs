@@ -7,7 +7,7 @@ namespace SeriesMovies
 {
 	public class SerieRepositorio : RepositorioBase<Serie>, IRepositorio<Serie>
 	{
-		public SerieRepositorio():	base(Path.Join("Dados", "series.txt"))
+		public SerieRepositorio():	base(Path.Join("Dados", "series.json"))
 		{
 			LeArquivo();
 		}
