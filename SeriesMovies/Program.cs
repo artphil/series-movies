@@ -101,6 +101,8 @@ namespace SeriesMovies
 
 		private static void ExcluirSerie()
 		{
+			series.ImprimeLista(); ;
+			Console.WriteLine();
 			Console.Write("Digite o id da série: ");
 			int indiceSerie = int.Parse(Console.ReadLine());
 
@@ -109,6 +111,8 @@ namespace SeriesMovies
 
 		private static void VisualizarSerie()
 		{
+			series.ImprimeLista(); ;
+			Console.WriteLine();
 			Console.Write("Digite o id da série: ");
 			int indiceSerie = int.Parse(Console.ReadLine());
 
@@ -147,6 +151,9 @@ namespace SeriesMovies
 						break;
 					case "5":
 						InserirTemporada(serie);
+						break;
+					case "6":
+						ExcluirTemporada(serie);
 						break;
 
 					default:
@@ -192,6 +199,15 @@ namespace SeriesMovies
 			serie.AtualizaTemporada(TemporadaID, temporada);
 		}
 
+		private static void ExcluirTemporada(Serie serie)
+		{
+			series.ImprimeTemporadas(serie.Id);
+			Console.WriteLine();
+			Console.Write("Digite o id da temorada: ");
+			int indiceTemporada = int.Parse(Console.ReadLine());
+
+			series.ExcluiTemporada(serie.Id, indiceTemporada);
+		}
 		// FILMES
 		private static void OpcaoFilmes()
 		{

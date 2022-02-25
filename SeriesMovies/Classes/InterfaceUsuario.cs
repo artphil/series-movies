@@ -52,7 +52,7 @@ namespace SeriesMovies
 			Console.WriteLine("1 - Listar séries");
 			Console.WriteLine("2 - Inserir nova série");
 			Console.WriteLine("3 - Atualizar série");
-			Console.WriteLine("4 - Excluir série");
+			Console.WriteLine("4 - Remover série");
 			Console.WriteLine("5 - Visualizar série");
 			Console.WriteLine("0 - Voltar");
 			Console.WriteLine();
@@ -84,8 +84,9 @@ namespace SeriesMovies
 			Console.WriteLine($"1 - Titulo: {serie.Titulo}");
 			Console.WriteLine($"2 - Genero: {serie.Genero}");
 			Console.WriteLine($"3 - Descrição: {serie.Descricao}");
-			Console.WriteLine($"4 - Atualizar Temporadas: {serie.RetornaNumeroTemporadas()}");
+			Console.WriteLine($"4 - Atualizar Temporadas");
 			Console.WriteLine($"5 - Inserir Temporada");
+			Console.WriteLine($"5 - Remover Temporada");
 			Console.WriteLine($"0 - Voltar");
 			Console.WriteLine();
 
@@ -97,7 +98,7 @@ namespace SeriesMovies
 		public static Temporada InserirTemporada(int temporadaID)
 		{
 			InterfaceUsuario.Cabecalho();
-			Console.WriteLine($"Informações da {temporadaID+1}º temporada");
+			Console.WriteLine($"Informações da temporada");
 			int temporadaAno = ObterAno();
 			int temporadaEpisodios = ObterEpisodios();
 
@@ -128,7 +129,7 @@ namespace SeriesMovies
 			Console.WriteLine("1 - Listar filmes");
 			Console.WriteLine("2 - Inserir novo filme");
 			Console.WriteLine("3 - Atualizar filme");
-			Console.WriteLine("4 - Excluir filme");
+			Console.WriteLine("4 - Remover filme");
 			Console.WriteLine("5 - Visualizar filme");
 			Console.WriteLine("0 - Voltar");
 			Console.WriteLine();

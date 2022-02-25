@@ -1,1 +1,23 @@
-[{"Genero":8,"Titulo":"O Senhor dos Aneis","Descricao":"JRR Tokien","Temporadas":[{"Ano":2022,"Episodios":10,"Id":0,"Excluido":false}],"Id":0,"Excluido":false}]
+[
+  {
+    "Genero": 8,
+    "Titulo": "O Senhor dos Aneis",
+    "Descricao": "JRR Tokien",
+    "Temporadas": [
+      {
+        "Ano": 2022,
+        "Episodios": 10,
+        "Id": 0,
+        "Excluido": false
+      },
+      {
+        "Ano": 2023,
+        "Episodios": 8,
+        "Id": 1,
+        "Excluido": true
+      }
+    ],
+    "Id": 0,
+    "Excluido": false
+  }
+]

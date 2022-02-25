@@ -74,6 +74,11 @@ namespace SeriesMovies
 			lista[serieID].Temporadas.Add(temporada);
 			SalvaArquivo();
 		}
+		public void ExcluiTemporada(int serieID, int temporadaID)
+		{
+			lista[serieID].Temporadas[temporadaID].Excluir();
+			SalvaArquivo();
+		}
 		public List<Serie> RetornaLista()
 		{
 			return lista;
