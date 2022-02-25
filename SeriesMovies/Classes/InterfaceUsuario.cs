@@ -16,6 +16,13 @@ namespace SeriesMovies
 			Console.ReadKey();
 		}
 
+		public static void Despedida()
+		{
+			Cabecalho();
+			Console.WriteLine("Obrigado por utilizar nossos serviços.");
+			Pausa();
+		}
+
 		public static bool Confirma(string mensagen)
 		{
 			Console.Write($"{mensagen} (S/N):");

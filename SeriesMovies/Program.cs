@@ -36,8 +36,7 @@ namespace SeriesMovies
 				opcaoUsuario = InterfaceUsuario.Inicio();
 			}
 
-			Console.WriteLine("Obrigado por utilizar nossos serviços.");
-			InterfaceUsuario.Pausa();
+			InterfaceUsuario.Despedida();
 		}
 
 		private static void ListarTudo()
