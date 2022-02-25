@@ -22,10 +22,6 @@ namespace SeriesMovies
 			retorno += $"Episodios: {this.Episodios}" + Environment.NewLine;
 			return retorno;
 		}
-
-		public string toJSON()
-		{
-			return JsonSerializer.Serialize(this);
-		}
+		
 	}
 }
