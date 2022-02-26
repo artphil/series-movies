@@ -14,10 +14,40 @@
         "Ano": 2023,
         "Episodios": 8,
         "Id": 1,
-        "Excluido": true
+        "Excluido": false
       }
     ],
     "Id": 0,
     "Excluido": false
+  },
+  {
+    "Genero": 12,
+    "Titulo": "Cartago",
+    "Descricao": "kkkk",
+    "Temporadas": [
+      {
+        "Ano": 2020,
+        "Episodios": 12,
+        "Id": 0,
+        "Excluido": false
+      }
+    ],
+    "Id": 1,
+    "Excluido": false
+  },
+  {
+    "Genero": 9,
+    "Titulo": "Minority Report",
+    "Descricao": "Futurista",
+    "Temporadas": [
+      {
+        "Ano": 2000,
+        "Episodios": 1,
+        "Id": 0,
+        "Excluido": false
+      }
+    ],
+    "Id": 2,
+    "Excluido": true
   }
 ]

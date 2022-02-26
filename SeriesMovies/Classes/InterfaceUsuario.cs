@@ -86,7 +86,7 @@ namespace SeriesMovies
 			Console.WriteLine($"3 - Descrição: {serie.Descricao}");
 			Console.WriteLine($"4 - Atualizar Temporadas");
 			Console.WriteLine($"5 - Inserir Temporada");
-			Console.WriteLine($"5 - Remover Temporada");
+			Console.WriteLine($"6 - Remover Temporada");
 			Console.WriteLine($"0 - Voltar");
 			Console.WriteLine();
 
@@ -163,7 +163,7 @@ namespace SeriesMovies
 			Console.WriteLine($"1 - Titulo: {filme.Titulo}");
 			Console.WriteLine($"2 - Genero: {filme.Genero}");
 			Console.WriteLine($"3 - Descrição: {filme.Descricao}");
-			Console.WriteLine($"3 - Ano: {filme.Ano}");
+			Console.WriteLine($"4 - Ano: {filme.Ano}");
 			Console.WriteLine($"0 - Voltar");
 			Console.WriteLine();
 
@@ -189,13 +189,34 @@ namespace SeriesMovies
 
 		public static Genero ObterGenero()
 		{
+			int nGeneros = 0;
 			foreach (int i in Enum.GetValues(typeof(Genero)))
 			{
+				nGeneros++;
 				Console.WriteLine("{0} - {1}", i, Enum.GetName(typeof(Genero), i));
 			}
+
+			while (true)
+			{
 			Console.Write("Digite o gênero entre as opções acima: ");
-			int entradaGenero = int.Parse(Console.ReadLine());
-			return (Genero)entradaGenero;
+
+				try
+				{
+					int entradaGenero = int.Parse(Console.ReadLine());
+					if (entradaGenero < nGeneros)
+					{
+						return (Genero)entradaGenero;
+					}
+					else
+					{
+						Console.WriteLine("Genero inválido.");
+					}
+				}
+				catch (System.Exception)
+				{
+					Console.WriteLine("Opção inválida.");
+				}
+			}
 		}
 
 		public static int ObterEpisodios()
